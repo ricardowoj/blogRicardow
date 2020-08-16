@@ -1,1 +1,15 @@
-<h1>Hello World</h1>
+<h1>Post</h1>
+
+<h1>My Post's</h1>
+<ul>
+    {% for post in object_list %}
+        <br>
+        <li>
+            <h3><a href="">{{ post.title }}</a></h3>
+            <br>
+            <h4>{{ post.body | slice:":200" }}</h4>
+            <p><small>{{ post.author.first_name }} {{ post.author.last_name }}</small></p>
+        </li>
+        <hr>
+    {% endfor %}
+</ul>
