@@ -1,6 +1,8 @@
-<h1>Ricardo Wojciechowski</h1>
+{% extends 'base.html' %}
+{% block content %}
 
-<h1>Meu Posts</h1>
+<h1>Ricardo Wojciechowski</h1>
+<h2>Meu Posts</h2>
 <ul>
     {% for post in object_list %}
         <br>
@@ -13,3 +15,5 @@
         <hr>
     {% endfor %}
 </ul>
+
+{% endblock %}
