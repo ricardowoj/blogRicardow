@@ -4,13 +4,17 @@
 
     <h1>Post {{ post.title }}</h1>
     <br>
-    <div class="form-group">
-        <form method="POST">
-            {% csrf_token %}
-            <strong>Você tem certeza que deseja deletar?!</strong>
-            <br>
-            <button class="btn btn-danger mt-5">Deletar</button>
-        </form>
-    </div>
+    {% if user.is_authenticated %}
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                <strong>Você tem certeza que deseja deletar?!</strong>
+                <br>
+                <button class="btn btn-danger mt-5">Deletar</button>
+            </form>
+        </div>
+    {% else %}
+        <h3>Para deletar o post é necessário estar logado!</h3>
+    {% endif %}
 
 {% endblock %}
