@@ -2,16 +2,20 @@
 {% block title %} Novo Post! {% endblock %}
 {% block content %}
 
-<h1>Criar novo Post</h1>
-<br>
-<div class="form-group">
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <br>
-        <a href="{% url 'home' %}" class="btn btn-secondary btn-sm">Voltar</a>
-        <button class="btn btn-success btn-sm">Criar</button>
-    </form>
-</div>
+    <h1>Criar novo Post</h1>
+    <br>
+    {% if user.is_authenticated %}
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <br>
+                <a href="{% url 'home' %}" class="btn btn-secondary btn-sm">Voltar</a>
+                <button class="btn btn-success btn-sm">Criar</button>
+            </form>
+        </div>
+    {% else %}
+        <h3>Para criar o post é necessário estar logado!</h3>
+    {% endif %}
 
 {% endblock %}
