@@ -10,7 +10,10 @@
 
             {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'add-post' %}">Novo Post</a>
+                    <a class="nav-link" href="{% url 'add-post' %}">Novo post</a>
+                </li>
+                <li class="nav-item {% if request.path == add_category %} active {% endif %}">
+                    <a class="nav-link" href="{% url 'add-category' %}">Nova categoria</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
