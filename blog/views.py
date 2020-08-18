@@ -1,3 +1,4 @@
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from blog.models import Post, Category
@@ -7,7 +8,12 @@ from blog.forms import PostForm, CategoryForm
 class HomeView(ListView):
     model = Post
     template_name = 'home.html'
-    ordering = ['post_date']
+    ordering = ['-post_date']
+
+
+def category_view(request, cats):
+    category_posts = Post.objects.filter(category=cats)
+    return render(request, 'categories.html', {'cats': cats.title(), 'category_posts': category_posts})
 
 
 class ArticleDetailView(DetailView):
