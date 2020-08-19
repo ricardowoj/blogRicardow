@@ -16,7 +16,7 @@
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                     {% for category in categories_menu %}
-                        <a class="dropdown-item" href="{% url 'category' category %}">{{ category }}</a>
+                        <a class="dropdown-item" href="{% url 'category' category %}">{{ post.author.name }}</a>
                     {% endfor %}
 
                 </div>
@@ -32,6 +32,9 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="">
+                    <a class="nav-link border border-success text-success ml-5">Bem-vindo(A) {{ user.username }}</a>
                 </li>
             {% else %}
                 <li class="nav-item">
