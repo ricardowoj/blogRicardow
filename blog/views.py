@@ -10,6 +10,12 @@ class HomeView(ListView):
     template_name = 'home.html'
     ordering = ['-post_date']
 
+    def get_context_data(self, *args, **kwargs):
+        categories_menu = Category.objects.all()
+        context = super(HomeView, self).get_context_data(*args, **kwargs)
+        context["categories_menu"] = categories_menu
+        return context
+
 
 def category_view(request, cats):
     category_posts = Post.objects.filter(category=cats)
