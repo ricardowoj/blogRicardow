@@ -5,13 +5,24 @@
 {% block content %}
 
 <h1>{{ post.title }}</h1>
+<small><a href="{% url 'category' post.category %}"><b>Categoria {{ post.category }}</b></a></small>
+<br>
 <small>
-    By: {{ post.author.first_name }} {{ post.author.last_name }} {{ post.post_date }}
+    By: {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}
+    <br><br>
+    <form action="{% url 'like_post' post.pk %}" method="POST">
+        {% csrf_token %}
+        <button type="submit" name="post_id" value="{{ post.id }}" type="button" class="btn btn-primary btn-sm">
+            Likes <span class="badge badge-light">{{ total_likes }}</span>
+            <span class="sr-only">unread messages</span>
+        </button>
+    </form>
 </small>
+
 <hr>
 <br>
 {{ post.body | safe }}
-<br><br>
+<br/><br/>
 
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
@@ -21,5 +32,9 @@
 {% else %}
 {% endif %}
 <a href="{% url 'home' %}" class="btn btn-secondary btn-sm">Voltar</a>
+
+    <br/><br/>
+    <hr>
+    <br/>
 
 {% endblock %}
