@@ -7,7 +7,10 @@
         <br>
         <li>
             <h3><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h3>
+            <small class="badge badge-primary">{{ post.total_likes }} Likes</small>
+            <br>
             <small><a href="{% url 'category' post.category %}"><b>Categoria {{ post.category }}</b></a></small>
+
             <br><br>
             <h4>{{ post.body | slice:":200" }}</h4>
             <p><small>{{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}</small></p>
