@@ -12,7 +12,7 @@
             <small><a href="{% url 'category' post.category %}"><b>Categoria {{ post.category }}</b></a></small>
 
             <br><br>
-            <h4>{{ post.body | slice:":200" }}</h4>
+            <h4>{{ post.body | safe | slice:":200" }}</h4>
             <p><small>{{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}</small></p>
         </li>
         <hr>
