@@ -15,10 +15,11 @@ class PostForm(forms.ModelForm):
     class Meta:
         choices = Category.objects.all().values_list('name', 'name')
         model = Post
-        fields = ('title', 'author', 'category', 'body')
+        fields = ('title', 'author', 'category', 'body', 'snippet')
         widgets = {
             'title': forms.TextInput(attrs={'class': 'form-control'}),
             'author': forms.TextInput(attrs={'class': 'form-control', 'id': 'author', 'type': 'hidden'}),
             'category': forms.Select(choices=choices, attrs={'class': 'form-control'}),
-            'body': forms.Textarea(attrs={'class': 'form-control'})
+            'body': forms.Textarea(attrs={'class': 'form-control'}),
+            'snippet': forms.Textarea(attrs={'class': 'form-control'})
         }
