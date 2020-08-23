@@ -15,7 +15,8 @@ class PostForm(forms.ModelForm):
     class Meta:
         choices = Category.objects.all().values_list('name', 'name')
         model = Post
-        fields = ('title', 'author', 'category', 'body', 'snippet')
+        fields = ('title', 'author', 'category', 'body', 'snippet',
+                  'header_image')
         widgets = {
             'title':
             forms.TextInput(attrs={'class': 'form-control'}),
@@ -30,5 +31,5 @@ class PostForm(forms.ModelForm):
             'body':
             forms.Textarea(attrs={'class': 'form-control'}),
             'snippet':
-            forms.Textarea(attrs={'class': 'form-control'})
+            forms.Textarea(attrs={'class': 'form-control'}),
         }
