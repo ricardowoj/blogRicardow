@@ -5,7 +5,7 @@ from .models import Post, Category
 class CategoryForm(forms.ModelForm):
     class Meta:
         model = Category
-        fields = ('name',)
+        fields = ('name', )
         widgets = {
             'category': forms.TextInput(attrs={'class': 'form-control'})
         }
@@ -17,9 +17,18 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'author', 'category', 'body', 'snippet')
         widgets = {
-            'title': forms.TextInput(attrs={'class': 'form-control'}),
-            'author': forms.TextInput(attrs={'class': 'form-control', 'id': 'author', 'type': 'hidden'}),
-            'category': forms.Select(choices=choices, attrs={'class': 'form-control'}),
-            'body': forms.Textarea(attrs={'class': 'form-control'}),
-            'snippet': forms.Textarea(attrs={'class': 'form-control'})
+            'title':
+            forms.TextInput(attrs={'class': 'form-control'}),
+            'author':
+            forms.TextInput(attrs={
+                'class': 'form-control',
+                'id': 'author',
+                'type': 'hidden'
+            }),
+            'category':
+            forms.Select(choices=choices, attrs={'class': 'form-control'}),
+            'body':
+            forms.Textarea(attrs={'class': 'form-control'}),
+            'snippet':
+            forms.Textarea(attrs={'class': 'form-control'})
         }
