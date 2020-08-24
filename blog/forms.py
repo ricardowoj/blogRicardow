@@ -21,8 +21,6 @@ class PostForm(forms.ModelForm):
                                widget=forms.Select(
                                    choices=choices,
                                    attrs={'class': 'form-control'}))
-    body = forms.CharField(
-        label="Texto", widget=forms.Textarea(attrs={'class': 'form-control'}))
     snippet = forms.CharField(label="Resumo",
                               widget=forms.Textarea(attrs={
                                   'rows': '5',
@@ -36,11 +34,18 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'author', 'category', 'body', 'snippet',
                   'header_image')
+        labels = {
+            'body': 'Texto',
+        }
         widgets = {
             'author':
             forms.TextInput(attrs={
                 'class': 'form-control',
                 'id': 'author',
                 'type': 'hidden'
+            }),
+            'body':
+            forms.Textarea(attrs={
+                'class': 'form-control',
             })
         }
