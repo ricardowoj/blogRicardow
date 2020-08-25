@@ -26,7 +26,7 @@
 <br>
 {{ post.body | safe }}
 <br/><br/>
-
+    <img src="{{ post.author.profile.profile_picture.url }}" alt="">
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
         <a href="{% url 'update-post' post.pk %}" type="button" class="btn btn-primary btn-sm">Editar</a>
