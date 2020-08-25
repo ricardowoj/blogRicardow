@@ -1,7 +1,13 @@
 from django.views import generic
 from django.urls import reverse_lazy
-from django.contrib.auth.views import PasswordChangeView
-from members.forms import SignUpForm, EditProfileForm, PasswordChangingForm
+from django.contrib.auth.views import PasswordChangeView, LoginView
+from members.forms import SignUpForm, EditProfileForm, PasswordChangingForm, LoginForm
+
+
+class UserLoginView(LoginView):
+    form_class = LoginForm
+    template_name = './registration/login.html'
+    sucess_url = reverse_lazy('home')
 
 
 class PasswordsChangeView(PasswordChangeView):
