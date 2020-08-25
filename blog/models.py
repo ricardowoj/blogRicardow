@@ -20,6 +20,10 @@ class Profile(models.Model):
     profile_picture = models.ImageField(null=True,
                                         blank=True,
                                         upload_to="images/profile/")
+    website_url = models.CharField(max_length=255, null=True, blank=True)
+    facebook = models.CharField(max_length=255, null=True, blank=True)
+    twitter_url = models.CharField(max_length=255, null=True, blank=True)
+    instagram_url = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return str(self.user)
