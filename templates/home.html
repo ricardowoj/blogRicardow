@@ -2,21 +2,21 @@
 {% block content %}
 
 <h2>Meu Posts</h2>
-<ul>
+<div class="container" style="width: 80%">
+    <div class="row">
     {% for post in object_list %}
-        <br>
-        <li>
-            <h3><a href="{% url 'article-detail' post.pk %}">{{ post.title }}</a></h3>
-            <small class="badge badge-primary">{{ post.total_likes }} Likes</small>
-            <br>
-            <small><a href="{% url 'category' post.category %}"><b>Categoria {{ post.category }}</b></a></small>
-
-            <br><br>
-            <h4>{{ post.snippet | safe }}</h4>
-            <p><small>{{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}</small></p>
-        </li>
-        <hr>
+        <div class="card mb-3 mr-3" style="max-width: 24rem;">
+            <h5 class="card-header" >{{ post.title }}</h5>
+            <div class="card-body">
+                <h6 class="card-title">Categoria {{ post.category }}</h6>
+                <p class="card-text">{{ post.snippet | safe }}</p>
+                <small class="badge badge-primary">{{ post.total_likes }} Likes</small>
+                <br>
+                <a href="{% url 'article-detail' post.pk %}" class="btn btn-primary btn-sm mt-3">Acessar</a>
+            </div>
+        </div>
     {% endfor %}
-</ul>
+    </div>
+</div>
 
 {% endblock %}
