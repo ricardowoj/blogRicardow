@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}
     {{ post.title }}
 {% endblock %}
@@ -26,8 +27,14 @@
 </form>
 <br>
 <h6>
-    <img src="{{ post.author.profile.profile_picture.url }}" class="rounded-circle" width=25 height=25> 
+
+    {% if  post.author.profile.profile_picture %}
+        <img src="{{ post.author.profile.profile_picture.url }}" class="rounded-circle" width=25 height=25>
+    {% else %}
+        <img src="{% static 'blog/images/user-profile-default.png' %}" class="rounded-circle" width=25 height=25>
+    {% endif %}
     {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}
+
 </h6> 
 <hr>
 <br>
@@ -38,10 +45,19 @@
 <br/><br/>
 
 <div class="card mb-3">
-  <div class="row no-gutters">
-    <div class="col-md-2">
-        <img src="{{ post.author.profile.profile_picture.url }}" class="card-img">
-    </div>
+    <div class="row no-gutters">
+  
+    {% if  post.author.profile.profile_picture %}
+        <div class="col-md-2">
+            <img src="{{ post.author.profile.profile_picture.url }}" class="card-img">
+        </div>
+    {% else %}
+        <div class="col-md-2">
+            <img src="{% static 'blog/images/user-profile-default.png' %}" class="card-img">
+        </div>
+    {% endif %}
+      
+
     <div class="col-md-8">
         <div class="card-body">
             <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
