@@ -4,21 +4,31 @@
 {% endblock %}
 {% block content %}
 
-<h1>{{ post.title }}</h1>
-<small><a href="{% url 'category' post.category %}"><b>Categoria {{ post.category }}</b></a></small>
+<h5>
+    <a href="{% url 'category' post.category %}">
+        <b>Categoria {{ post.category }}</b>
+    </a>
+</h5>
 <br>
-<small>
-    By: {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}
-    <br><br>
-    <form action="{% url 'like_post' post.pk %}" method="POST">
-        {% csrf_token %}
-        <button type="submit" name="post_id" value="{{ post.id }}" type="button" class="btn btn-primary btn-sm">
-            Likes <span class="badge badge-light">{{ total_likes }}</span>
-            <span class="sr-only">unread messages</span>
-        </button>
-    </form>
-</small>
+<h1>{{ post.title }}</h1>
+<br>
 
+<br>
+<form action="{% url 'like_post' post.pk %}" method="POST">
+    {% csrf_token %}
+    <div class="media">
+        <h6 class="mt-1">Gostou? Deixei seu like!</h6>
+        <button type="submit" name="post_id" value="{{ post.id }}" type="button" class="btn btn-primary btn-sm ml-2">
+            Likes 
+            <span class="badge badge-light">{{ total_likes }}</span>
+        </button>
+    </div>
+</form>
+<br>
+<h6>
+    <img src="{{ post.author.profile.profile_picture.url }}" class="rounded-circle" width=25 height=25> 
+    {{ post.author.first_name }} {{ post.author.last_name }} - {{ post.post_date }}
+</h6> 
 <hr>
 <br>
 <img src="{{ post.header_image.url }}" class="img-fluid rounded mx-auto d-block">
@@ -26,6 +36,44 @@
 <br>
 {{ post.body | safe }}
 <br/><br/>
+
+<div class="card mb-3">
+  <div class="row no-gutters">
+    <div class="col-md-2">
+        <img src="{{ post.author.profile.profile_picture.url }}" class="card-img">
+    </div>
+    <div class="col-md-8">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.author.first_name }} {{ post.author.last_name }}</h5>
+            <div class="small mb-1 ml-2">
+
+                {% if post.author.profile.website_url %}
+                    <a href="{{ post.author.profile.website_url }}" target="_blank" ><i class="fa fa-globe mr-2" aria-hidden="true" style="font-size:20px;color:black;"></i></a>
+                {% endif %}
+                {% if post.author.profile.facebook_url %}
+                    <a href="{{ post.author.profile.facebook_url }}" target="_blank" ><i class="fa fa-facebook-official mr-2" style="font-size:20px;color:blue;" aria-hidden="true"></i></a>
+                {% endif %}
+                {% if post.author.profile.instagram_url %}
+                    <a href="{{ post.author.profile.instagram_url }}" target="_blank" ><i class="fa fa-instagram mr-2" style="font-size:20px;color:red;" aria-hidden="true"></i></a>
+                {% endif %}
+                {% if post.author.profile.website_url %}
+                    <a href="{{ post.author.profile.twitter_url }}" target="_blank" ><i class="fa fa-twitter mr-2" style="font-size:20px;color:blue;" aria-hidden="true"></i></a>
+                {% endif %}    
+                {% if post.author.profile.website_url %}
+                    <a href="{{ post.author.profile.website_url }}" target="_blank"><i class="fa fa-github mr-2" aria-hidden="true" style="font-size:20px;color:black;"></i></a>
+                {% endif %}
+                {% if post.author.profile.website_url %}
+                    <a href="{{ post.author.profile.website_url }}" target="_blank"><i class="fa fa-linkedin-square mr-2" aria-hidden="true" style="font-size:20px;color:blue;"></i></a>
+                {% endif %}         
+            </div>
+            <p class="card-text mt-4">{{ post.author.profile.bio }}</p>
+        </div>
+    </div>
+  </div>
+</div>
+
+
+<br>
 {% if user.is_authenticated %}
     {% if user.id == post.author.id %}
         <a href="{% url 'update-post' post.pk %}" type="button" class="btn btn-primary btn-sm">Editar</a>
