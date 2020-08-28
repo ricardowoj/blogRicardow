@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+
+    {% if category_posts %}
+        <h2>Categoria {{ cats }}</h2>
+
+        <div>
+        {% for post in category_posts %}
+            <br>
+                <div class="card text-center mb-3"style="width: 100%">
+                    <div class="card-header">
+                    {{ post.title }}
+                    </div>
+                    <div class="card-body">
+                    <p class="card-text">{{ post.snippet | safe }}</p>
+                    <a href="#" class="btn btn-primary">Acessar</a>
+                    </div>
+                    <div class="card-footer text-muted">
+                    Criado em {{ post.post_date }}
+                    </div>
+                </div>
+        {% endfor %}
+        </div>
+
+    {% else %}
+        <h2>Nessa categoria não temos post!</h2>
+    {% endif %}
+
+{% endblock %}
